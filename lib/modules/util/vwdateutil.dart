@@ -1,5 +1,5 @@
 import 'package:intl/intl.dart';
-import 'package:matrixclient/modules/base/vwdataformat/vwdataformattimestamp/vwdataformattimestamp.dart';
+import 'package:matrixclient2base/modules/base/vwdataformat/vwdataformattimestamp/vwdataformattimestamp.dart';
 
 class VwDateUtil{
   static  VwDataFormatTimestamp nowTimestamp(){

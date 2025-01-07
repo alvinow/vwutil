@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
-import 'package:matrixclient/modules/base/vwfilestorage/modules/vwfileencryption/vwfileencryption.dart';
+import 'package:matrixclient2base/modules/base/vwfilestorage/modules/vwfileencryption/vwfileencryption.dart';
 import 'package:md5_file_checksum/md5_file_checksum.dart';
 import 'package:crypto/crypto.dart';
 import 'package:encrypt/encrypt.dart' as encryption;

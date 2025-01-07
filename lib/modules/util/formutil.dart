@@ -1,13 +1,11 @@
-import 'package:matrixclient/modules/base/vwdataformat/vwfiedvalue/vwfieldvalue.dart';
-import 'package:matrixclient/modules/base/vwdataformat/vwrowdata/vwrowdata.dart';
-import 'package:matrixclient/modules/base/vwfilestorage/vwfilestorage.dart';
+import 'package:matrixclient2base/modules/base/vwdataformat/vwfiedvalue/vwfieldvalue.dart';
+import 'package:matrixclient2base/modules/base/vwdataformat/vwrowdata/vwrowdata.dart';
+import 'package:matrixclient2base/modules/base/vwfilestorage/vwfilestorage.dart';
 import 'dart:convert';
+import 'package:vwform/modules/vwform/vwformdefinition/vwformdefinition.dart';
+import 'package:vwform/modules/vwform/vwformdefinition/vwformfield/vwformfield.dart';
+import 'package:vwform/modules/vwform/vwformdefinition/vwsectionformdefinition/vwsectionformdefinition.dart';
 
-import 'package:matrixclient/modules/base/vwnode/vwnode.dart';
-import 'package:matrixclient/modules/vwform/vwformdefinition/vwformdefinition.dart';
-import 'package:matrixclient/modules/vwform/vwformdefinition/vwformfield/vwformfield.dart';
-import 'package:matrixclient/modules/vwform/vwformdefinition/vwsectionformdefinition/vwsectionformdefinition.dart';
-import 'package:matrixclient/modules/vwformpage/vwoldformpage.dart';
 
 class FormUtil{
 
@@ -40,26 +38,7 @@ class FormUtil{
 
   }
 
-  /*
-  static void extractSyncNodeResponseList(VwRowData formResponse,List<VwNode> uploadNodeResponseList )
-  {
-    for(int la=0;formResponse.fields!=null && la<formResponse.fields!.length;la++)
-    {
-      VwFieldValue currentFieldValue=formResponse.fields!.elementAt(la);
-      if(currentFieldValue.syncNodeResponseList !=null && currentFieldValue.syncNodeResponseList!.length>0)
-      {
-        uploadNodeResponseList.addAll(currentFieldValue.syncNodeResponseList!);
-      }
-      else if(currentFieldValue.valueFormResponse!=null)
-      {
-        FormUtil.extractSyncNodeResponseList(currentFieldValue.valueFormResponse!,uploadNodeResponseList);
-      }
-      else if(currentFieldValue.valueRowData!=null)
-      {
-        FormUtil.extractSyncNodeResponseList(currentFieldValue.valueRowData!,uploadNodeResponseList);
-      }
-    }
-  }*/
+
 
   static void extractVwFileStorage(VwRowData formResponse,List<VwFileStorage> uploadFileStorageList )
   {

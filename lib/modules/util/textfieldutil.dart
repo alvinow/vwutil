@@ -1,4 +1,4 @@
-import 'package:matrixclient/modules/base/vwnumbertextinputformatter/vwnumbertextinputformatter.dart';
+import 'package:matrixclient2base/modules/base/vwnumbertextinputformatter/vwnumbertextinputformatter.dart';
 import 'package:number_text_input_formatter/number_text_input_formatter.dart';
 
 class TextFieldUtil{

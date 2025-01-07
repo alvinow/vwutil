@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:http/http.dart' as http;
-import 'package:matrixclient/modules/util/vwmultipartrequest/vwmultipartrequest.dart';
+import 'package:vwutil/modules/util/vwmultipartrequest/vwmultipartrequest.dart';
 
 class MultipartRequestExtended extends http.MultipartRequest {
   /// Creates a new [MultipartRequest].

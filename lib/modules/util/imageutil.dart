@@ -1,8 +1,8 @@
 import 'dart:typed_data';
+import 'package:matrixclient2base/modules/base/vwfilestorage/modules/vwimagefileinfo/vwimagefileinfo.dart';
 import 'package:path/path.dart' as pa;
 import 'package:image/image.dart' as img;
 
-import 'package:matrixclient/modules/base/vwfilestorage/modules/vwimagefileinfo/vwimagefileinfo.dart';
 
 class ImageUtil {
   static VwImageFileInfo? getImageFileInfo(String filename, Uint8List fileContent) {

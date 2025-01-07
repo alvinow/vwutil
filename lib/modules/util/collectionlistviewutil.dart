@@ -1,12 +1,11 @@
-import 'package:matrixclient/modules/base/vwnode/vwnode.dart';
-import 'package:matrixclient/modules/util/nodeutil.dart';
-import 'package:matrixclient/modules/vwcollectionlistviewdefinition/vwcollectionlistviewdefinition.dart';
-import 'package:matrixclient/modules/vwform/vwformdefinition/vwfielduiparam/vwfielduiparam.dart';
-import 'package:matrixclient/modules/vwform/vwformdefinition/vwformdefinition.dart';
+import 'package:matrixclient2base/modules/base/vwnode/vwnode.dart';
+import 'package:vwform/modules/vwcollectionlistviewdefinition/vwcollectionlistviewdefinition.dart';
+import 'package:vwform/modules/vwform/vwformdefinition/vwformdefinition.dart';
+import 'package:vwutil/modules/util/nodeutil.dart';
 
 class CollectionListViewUtil{
 
-  static VwFormDefinition? getFormDefinition(VwCollectionListViewDefinition collectionListViewDefinition){
+  static VwFormDefinition ? getFormDefinition(VwCollectionListViewDefinition collectionListViewDefinition){
 
     VwFormDefinition? returnValue;
 
@@ -22,23 +21,9 @@ class CollectionListViewUtil{
             returnValue=NodeUtil.extractFormDefinitionFromContent(nodeContent: formDefinitionNode!.content);
 
 
-            /*
-            returnValue = VwFormDefinition.fromJson(
-                collectionListViewDefinition!.detailLinkFormDefinition!
-                    .rendered!.node!.content!.classEncodedJson!.data!);*/
+
           }
-          /*
 
-
-          if(collectionListViewDefinition.detailFormDefinitionMode== VwFieldUiParam.dfmLinkFormDefinition)
-            {
-              returnValue=collectionListViewDefinition.detailLinkFormDefinition!.renderedFormDefinition;
-            }
-          else if(collectionListViewDefinition.detailFormDefinitionMode==VwFieldUiParam.dfmLocal)
-            {
-              returnValue=collectionListViewDefinition.detailFormDefinition;
-            }
-*/
         }
         catch(error){
 

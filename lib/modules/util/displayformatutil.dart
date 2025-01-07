@@ -1,12 +1,11 @@
 import 'package:intl/intl.dart';
-import 'package:matrixclient/appconfig.dart';
-import 'package:matrixclient/modules/base/vwdataformat/vwfiedvalue/vwfieldvalue.dart';
-import 'package:matrixclient/modules/base/vwfielddisplayformat/vwfielddisplayformat.dart';
-import 'package:matrixclient/modules/util/vwdateutil.dart';
+import 'package:matrixclient2base/modules/base/vwdataformat/vwfiedvalue/vwfieldvalue.dart';
+import 'package:matrixclient2base/modules/base/vwfielddisplayformat/vwfielddisplayformat.dart';
+import 'package:vwutil/modules/util/vwdateutil.dart';
 
 class DisplayFormatUtil {
   static String? renderDisplayFormat(
-      VwFieldDisplayFormat fieldDisplayFormat, VwFieldValue fieldValue) {
+      VwFieldDisplayFormat fieldDisplayFormat, VwFieldValue fieldValue, String locale) {
     String? returnValue;
 
     try {
@@ -28,17 +27,17 @@ class DisplayFormatUtil {
         returnValue = fieldValue.valueNumber.toString();
       } else if (fieldValue.valueTypeId == VwFieldValue.vatDateTime) {
         if (fieldValue.valueDateTime != null) {
-          returnValue = DateFormat("dd-MMM-yyyy Hm", AppConfig.locale)
+          returnValue = DateFormat("dd-MMM-yyyy Hm", locale)
               .format(fieldValue.valueDateTime!);
         }
       } else if (fieldValue.valueTypeId == VwFieldValue.vatDateOnly) {
         if (fieldValue.valueDateTime != null) {
-          returnValue = DateFormat("dd-MMM-yyyy", AppConfig.locale)
+          returnValue = DateFormat("dd-MMM-yyyy", locale)
               .format(fieldValue.valueDateTime!);
         }
       } else if (fieldValue.valueTypeId == VwFieldValue.vatTimeOnly) {
         if (fieldValue.valueDateTime != null) {
-          returnValue = DateFormat("Hm", AppConfig.locale)
+          returnValue = DateFormat("Hm", locale)
               .format(fieldValue.valueDateTime!);
         }
       }
@@ -89,11 +88,11 @@ class DisplayFormatUtil {
             .format(fieldValue.valueDateTime!);
       } else if (fieldValue.valueDateTime != null &&
           fieldDisplayFormat.fieldFormat == VwFieldDisplayFormat.vsfDateOnly) {
-        returnValue = DateFormat("dd-MMM-yyyy", AppConfig.locale)
+        returnValue = DateFormat("dd-MMM-yyyy", locale)
             .format(fieldValue.valueDateTime!);
       } else if (fieldValue.valueDateTime != null &&
           fieldDisplayFormat.fieldFormat == VwFieldDisplayFormat.vsfTimeOnly) {
-        returnValue = DateFormat("HH:mm", AppConfig.locale)
+        returnValue = DateFormat("HH:mm", locale)
             .format(fieldValue.valueDateTime!);
       } else if (fieldValue.valueDateTime != null &&
           fieldDisplayFormat.fieldFormat == VwFieldDisplayFormat.vsfDateTime) {

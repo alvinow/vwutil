@@ -1,10 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:matrixclient/appconfig.dart';
-import 'package:matrixclient/modules/base/vwappinstanceparam/vwappinstanceparam.dart';
-import 'package:matrixclient/modules/base/vwnode/vwnode.dart';
-import 'package:matrixclient/modules/base/vwuser/vwuser.dart';
-import 'package:matrixclient/modules/util/nodeutil.dart';
+import 'package:matrixclient2base/modules/base/vwnode/vwnode.dart';
+import 'package:matrixclient2base/modules/base/vwuser/vwuser.dart';
+import 'package:vwform/modules/vwappinstanceparam/vwappinstanceparam.dart';
+import 'package:vwutil/modules/util/nodeutil.dart';
 
 class ProfilePictureUtil {
   static String? getUrlProfilePicture(VwUser user) {
@@ -15,7 +14,7 @@ class ProfilePictureUtil {
     return returnValue;
   }
 
-  static Widget getProfilePictureWidget({String baseUrl=AppConfig.baseUrl+r"/profilepicture/",  String? urlProfilePicture, double size=37}) {
+  static Widget getProfilePictureWidget({required String baseUrl/*=AppConfig.baseUrl+r"/profilepicture/"*/,  String? urlProfilePicture, double size=37}) {
 
     double externalSize=size;
     double internalSize=size*0.6;
@@ -55,11 +54,11 @@ class ProfilePictureUtil {
   }
 
 
-  static Widget getUserProfilePictureFromNode({VwNode? node, double size=37 }){
-    Widget returnValue=ProfilePictureUtil.getProfilePictureWidget();
+  static Widget getUserProfilePictureFromNode({VwNode? node,required String baseUrl, double size=37 }){
+    Widget returnValue=ProfilePictureUtil.getProfilePictureWidget(baseUrl: baseUrl);
     try {
       if (node != null) {
-        returnValue= ProfilePictureUtil.getProfilePictureWidget(size: size, urlProfilePicture: ProfilePictureUtil.getUrlProfilePicture(
+        returnValue= ProfilePictureUtil.getProfilePictureWidget(baseUrl: baseUrl,size: size, urlProfilePicture: ProfilePictureUtil.getUrlProfilePicture(
             NodeUtil.getUserClassFromLinkNodeClassEncodedJson(
                 linkNode: node!.creatorUserLinkNode!)!));
       }
@@ -72,7 +71,7 @@ class ProfilePictureUtil {
   }
 
   static Widget getUserProfilePictureFromAppInstanceParam(
-  {required VwAppInstanceParam appInstanceParam,double size=37}) {
+  {required String baseUrl, required VwAppInstanceParam appInstanceParam,double size=37}) {
     String? urlProfilePicture;
     try {
       urlProfilePicture =
@@ -82,6 +81,6 @@ class ProfilePictureUtil {
     return Container(
       //color: Colors.green,
         //margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
-        child: ProfilePictureUtil.getProfilePictureWidget(urlProfilePicture: urlProfilePicture,size: size));
+        child: ProfilePictureUtil.getProfilePictureWidget(baseUrl: baseUrl, urlProfilePicture: urlProfilePicture,size: size));
   }
 }

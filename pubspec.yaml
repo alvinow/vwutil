@@ -35,6 +35,27 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.6
+  md5_file_checksum:
+  device_info_plus:
+  platform_device_id:
+  get_ip_address:
+  image:
+  crypto:
+  encrypt:
+  number_text_input_formatter:
+  flutter_map:
+  vwnodestoreonhive:
+    git:
+      url: https://github.com/alvinow/vwnodestoreonhive.git
+      ref: main
+  vwform:
+    git:
+      url: https://github.com/alvinow/vwform.git
+      ref: main
+  matrixclient2base:
+    git:
+      url: https://github.com/alvinow/matrixclient2base.git
+      ref: main
 
 dev_dependencies:
   flutter_test:

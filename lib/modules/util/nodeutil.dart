@@ -1,21 +1,21 @@
-import 'package:matrixclient/modules/base/vwbasemodel/vwbasemodel.dart';
-import 'package:matrixclient/modules/base/vwclassencodedjson/vwclassencodedjson.dart';
-import 'package:matrixclient/modules/base/vwdataformat/vwdataformattimestamp/vwdataformattimestamp.dart';
-import 'package:matrixclient/modules/base/vwdataformat/vwfiedvalue/vwfieldvalue.dart';
-import 'package:matrixclient/modules/base/vwdataformat/vwrowdata/vwrowdata.dart';
-import 'package:matrixclient/modules/base/vwfielddisplayformat/vwfielddisplayformat.dart';
-import 'package:matrixclient/modules/base/vwlinknode/modules/vwlinknoderendered/vwlinknoderendered.dart';
-import 'package:matrixclient/modules/base/vwlinknode/vwlinknode.dart';
-import 'package:matrixclient/modules/base/vwlinkrowcollection/vwlinkrowcollection.dart';
-import 'package:matrixclient/modules/base/vwnode/vwcontentcontext/vwcontentcontext.dart';
-import 'package:matrixclient/modules/base/vwnode/vwnode.dart';
-import 'package:matrixclient/modules/base/vwnode/vwnodecontent/vwnodecontent.dart';
-import 'package:matrixclient/modules/base/vwuser/vwuser.dart';
-import 'package:matrixclient/modules/edokumen2022/remoteapi/remote_api.dart';
-import 'package:matrixclient/modules/util/displayformatutil.dart';
-import 'package:matrixclient/modules/vwform/vwformdefinition/vwformdefinition.dart';
-import 'package:matrixclient/modules/vwform/vwformdefinition/vwlocalfieldref/vwlocalfieldref.dart';
-import 'package:matrixclient/modules/vwwidget/nodelistview/modules/listviewtitlecolumn/listviewtitlecolumn.dart';
+import 'package:matrixclient2base/modules/base/vwbasemodel/vwbasemodel.dart';
+import 'package:matrixclient2base/modules/base/vwclassencodedjson/vwclassencodedjson.dart';
+import 'package:matrixclient2base/modules/base/vwdataformat/vwdataformattimestamp/vwdataformattimestamp.dart';
+import 'package:matrixclient2base/modules/base/vwdataformat/vwfiedvalue/vwfieldvalue.dart';
+import 'package:matrixclient2base/modules/base/vwdataformat/vwrowdata/vwrowdata.dart';
+import 'package:matrixclient2base/modules/base/vwfielddisplayformat/vwfielddisplayformat.dart';
+import 'package:matrixclient2base/modules/base/vwlinknode/modules/vwlinknoderendered/vwlinknoderendered.dart';
+import 'package:matrixclient2base/modules/base/vwlinknode/vwlinknode.dart';
+import 'package:matrixclient2base/modules/base/vwlinkrowcollection/vwlinkrowcollection.dart';
+import 'package:matrixclient2base/modules/base/vwnode/vwcontentcontext/vwcontentcontext.dart';
+import 'package:matrixclient2base/modules/base/vwnode/vwnode.dart';
+import 'package:matrixclient2base/modules/base/vwnode/vwnodecontent/vwnodecontent.dart';
+import 'package:matrixclient2base/modules/base/vwuser/vwuser.dart';
+import 'package:vwform/modules/listviewtitlecolumn/listviewtitlecolumn.dart';
+import 'package:vwform/modules/remoteapi/remote_api.dart';
+import 'package:vwform/modules/vwform/vwformdefinition/vwformdefinition.dart';
+import 'package:vwform/modules/vwform/vwformdefinition/vwlocalfieldref/vwlocalfieldref.dart';
+import 'package:vwutil/modules/util/displayformatutil.dart';
 
 class NodeUtil {
 
@@ -918,7 +918,9 @@ class NodeUtil {
   static String? getValueFromContentRecordCollection(
       {required VwNode node,
       required String fieldName,
-      VwFieldDisplayFormat? fieldDisplayFormat}) {
+      VwFieldDisplayFormat? fieldDisplayFormat,
+      required String locale
+      }) {
     String? returnValue;
     try {
       if (node.nodeType == VwNode.ntnRowData) {
@@ -941,6 +943,7 @@ class NodeUtil {
                 returnValue = DisplayFormatUtil.renderDisplayFormat(
                   fieldDisplayFormat!,
                   currentFieldValue,
+                    locale
                 );
               }
             } else if (currentFieldValue.valueTypeId ==
@@ -948,7 +951,7 @@ class NodeUtil {
               returnValue = currentFieldValue.valueNumber!.toString();
               if (fieldDisplayFormat != null) {
                 returnValue = DisplayFormatUtil.renderDisplayFormat(
-                    fieldDisplayFormat!, currentFieldValue);
+                    fieldDisplayFormat!, currentFieldValue,locale);
               }
             }
           }

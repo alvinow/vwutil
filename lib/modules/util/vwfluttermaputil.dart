@@ -2,10 +2,10 @@
 
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:matrixclient/modules/base/vwdataformat/vwrowdata/vwrowdata.dart';
-import 'package:matrixclient/modules/base/vwlinknode/vwlinknode.dart';
-import 'package:matrixclient/modules/base/vwnode/vwnode.dart';
-import 'package:matrixclient/modules/util/nodeutil.dart';
+import 'package:matrixclient2base/modules/base/vwdataformat/vwrowdata/vwrowdata.dart';
+import 'package:matrixclient2base/modules/base/vwlinknode/vwlinknode.dart';
+import 'package:matrixclient2base/modules/base/vwnode/vwnode.dart';
+import 'package:vwutil/modules/util/nodeutil.dart';
 
 class VwFlutterMapUtil{
   static List<LatLng> createPointsFromLocationLinkNodeList(List<VwLinkNode> linkNodeList){

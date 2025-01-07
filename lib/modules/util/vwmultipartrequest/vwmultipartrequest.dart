@@ -3,7 +3,7 @@ import 'dart:io';
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:matrixclient/modules/util/vwmultipartrequest/multipartrequestextended.dart';
+import 'package:vwutil/modules/util/vwmultipartrequest/multipartrequestextended.dart';
 
 typedef OnUploadProgressFunction = void Function(int bytes, int totalBytes);
 
