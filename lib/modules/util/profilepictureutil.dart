@@ -69,8 +69,8 @@ class ProfilePictureUtil {
     return returnValue;
   }
 
-  static Widget getUserProfilePictureFromAppInstanceParam(
-  {required String baseUrl, required VwAppInstanceParam appInstanceParam,double size=37}) {
+  static Widget getUserProfilePictureOfLoggedInUser(
+  { required VwAppInstanceParam appInstanceParam,double size=37}) {
     String? userId;
     try {
       userId =
