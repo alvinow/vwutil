@@ -14,7 +14,7 @@ class ProfilePictureUtil {
     return returnValue;
   }
 
-  static Widget getProfilePictureWidget({required String baseUrl/*=AppConfig.baseUrl+r"/profilepicture/"*/,  String? urlProfilePicture, double size=37}) {
+  static Widget getProfilePictureWidget({required VwAppInstanceParam appInstanceParam, required String userId, double size=37}) {
 
     double externalSize=size;
     double internalSize=size*0.6;
@@ -34,8 +34,8 @@ class ProfilePictureUtil {
     ]);
 
     try {
-      String imageUrl=baseUrl+ urlProfilePicture!;
-      if (urlProfilePicture != null) {
+      String imageUrl=appInstanceParam.baseUrl+"profpic/"+appInstanceParam.loginResponse!.userInfo!.user.recordId;
+      if (imageUrl != null) {
         returnValue = Container(
             width: externalSize,
             height: externalSize,
@@ -54,13 +54,12 @@ class ProfilePictureUtil {
   }
 
 
-  static Widget getUserProfilePictureFromNode({VwNode? node,required String baseUrl, double size=37 }){
-    Widget returnValue=ProfilePictureUtil.getProfilePictureWidget(baseUrl: baseUrl);
+  static Widget getUserProfilePictureFromNode({VwNode? node,required VwAppInstanceParam appInstanceParam, double size=37 }){
+    Widget returnValue=Container();
     try {
       if (node != null) {
-        returnValue= ProfilePictureUtil.getProfilePictureWidget(baseUrl: baseUrl,size: size, urlProfilePicture: ProfilePictureUtil.getUrlProfilePicture(
-            NodeUtil.getUserClassFromLinkNodeClassEncodedJson(
-                linkNode: node!.creatorUserLinkNode!)!));
+        returnValue= ProfilePictureUtil.getProfilePictureWidget(appInstanceParam: appInstanceParam,userId: NodeUtil.getUserClassFromLinkNodeClassEncodedJson(
+            linkNode: node!.creatorUserLinkNode!)!.recordId );
       }
     }
     catch(error)
@@ -72,15 +71,24 @@ class ProfilePictureUtil {
 
   static Widget getUserProfilePictureFromAppInstanceParam(
   {required String baseUrl, required VwAppInstanceParam appInstanceParam,double size=37}) {
-    String? urlProfilePicture;
+    String? userId;
     try {
-      urlProfilePicture =
-          appInstanceParam.loginResponse!.userInfo!.user.urlProfilePicture;
+      userId =
+          appInstanceParam.loginResponse!.userInfo!.user.recordId;
+
+      if(userId!=null)
+        {
+          return Container(
+            //color: Colors.green,
+            //margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
+
+              child: ProfilePictureUtil.getProfilePictureWidget(appInstanceParam: appInstanceParam,userId:userId!   ,size: size));
+        }
+
     } catch (error) {}
 
-    return Container(
-      //color: Colors.green,
-        //margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
-        child: ProfilePictureUtil.getProfilePictureWidget(baseUrl: baseUrl, urlProfilePicture: urlProfilePicture,size: size));
+    return Container();
+
+
   }
 }
