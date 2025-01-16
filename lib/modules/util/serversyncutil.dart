@@ -13,7 +13,8 @@ import 'package:vwutil/modules/util/vwdateutil.dart';
 
 class ServerSyncUtil {
   static Future<VwNodeUpsyncResultPackage> syncNodeRowData(
-      {required VwRowData rowData,
+      {required String graphqlServerAddress,
+      required VwRowData rowData,
       List<VwFileStorage>? uploadFileStorageList,
       required String loginSessionId,
       required String ownerUserId}) async {
@@ -21,14 +22,12 @@ class ServerSyncUtil {
         VwNodeUpsyncResultPackage(nodeUpsyncResultList: []);
     try {
       SyncTokenBlock? syncTokenBlock = await VwNodeStoreOnHive.getToken(
+          graphqlServerAddress: graphqlServerAddress,
           loginSessionId: loginSessionId.toString(),
           count: 1,
           apiCallId: "getToken");
 
       if (syncTokenBlock != null) {
-
-
-
         VwNode formResponseNode = NodeUtil.generateNodeRowData(
             rowData: rowData,
             upsyncToken: syncTokenBlock.tokenList.elementAt(0),
