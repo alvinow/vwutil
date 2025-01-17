@@ -15,7 +15,7 @@ class ServerSyncUtil {
   static Future<VwNodeUpsyncResultPackage> syncNodeRowData(
       {
         required String baseUrl,
-        required String graphqlServerAddress,
+       // required String graphqlServerAddress,
       required VwRowData rowData,
       List<VwFileStorage>? uploadFileStorageList,
       required String loginSessionId,
@@ -24,7 +24,8 @@ class ServerSyncUtil {
         VwNodeUpsyncResultPackage(nodeUpsyncResultList: []);
     try {
       SyncTokenBlock? syncTokenBlock = await VwNodeStoreOnHive.getToken(
-          graphqlServerAddress: graphqlServerAddress,
+          //graphqlServerAddress: graphqlServerAddress,
+        baseUrl: baseUrl,
           loginSessionId: loginSessionId.toString(),
           count: 1,
           apiCallId: "getToken");
@@ -55,7 +56,7 @@ class ServerSyncUtil {
 
         returnValue = await RemoteApi.nodeUpsyncRequestApiCall(
            baseUrl: baseUrl,
-            graphqlServerAddress: graphqlServerAddress,
+            //graphqlServerAddress: graphqlServerAddress,
             apiCallId: "syncNodeContent",
             apiCallParam: apiCallParam,
             loginSessionId: loginSessionId.toString());
