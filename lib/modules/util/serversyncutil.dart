@@ -13,7 +13,9 @@ import 'package:vwutil/modules/util/vwdateutil.dart';
 
 class ServerSyncUtil {
   static Future<VwNodeUpsyncResultPackage> syncNodeRowData(
-      {required String graphqlServerAddress,
+      {
+        required String baseUrl,
+        required String graphqlServerAddress,
       required VwRowData rowData,
       List<VwFileStorage>? uploadFileStorageList,
       required String loginSessionId,
@@ -52,6 +54,8 @@ class ServerSyncUtil {
             fields: [fieldValueFormResponse]);
 
         returnValue = await RemoteApi.nodeUpsyncRequestApiCall(
+           baseUrl: baseUrl,
+            graphqlServerAddress: graphqlServerAddress,
             apiCallId: "syncNodeContent",
             apiCallParam: apiCallParam,
             loginSessionId: loginSessionId.toString());

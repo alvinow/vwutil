@@ -34,7 +34,7 @@ class ProfilePictureUtil {
     ]);
 
     try {
-      String imageUrl=appInstanceParam.baseUrl+"profpic/"+appInstanceParam.loginResponse!.userInfo!.user.recordId;
+      String imageUrl=appInstanceParam.baseAppConfig.generalConfig.baseUrl+"profpic/"+appInstanceParam.loginResponse!.userInfo!.user.recordId;
       if (imageUrl != null) {
         returnValue = Container(
             width: externalSize,
