@@ -18,11 +18,8 @@ import 'package:vwform/modules/vwform/vwformdefinition/vwlocalfieldref/vwlocalfi
 import 'package:vwutil/modules/util/displayformatutil.dart';
 
 class NodeUtil {
-
-
-
-  static void nodeToRowData({required VwNode nodeSource, required  VwRowData rowDataDestination})
-  {
+  static void nodeToRowData(
+      {required VwNode nodeSource, required VwRowData rowDataDestination}) {
     try {
       rowDataDestination
           .getOrCreateFieldByName(fieldName: "recordId")
@@ -48,7 +45,7 @@ class NodeUtil {
           .getOrCreateFieldByName(fieldName: "creatorUserId")
           .valueString = nodeSource.creatorUserId;
 
-      if(nodeSource.timestamp!=null) {
+      if (nodeSource.timestamp != null) {
         rowDataDestination
             .getOrCreateFieldByName(fieldName: "createdtimestamp")
             .valueDateTime = nodeSource.timestamp!.created;
@@ -57,21 +54,15 @@ class NodeUtil {
             .getOrCreateFieldByName(fieldName: "updatedtimestamp")
             .valueDateTime = nodeSource.timestamp!.updated;
       }
-    }
-    catch(error)
-    {
-
-    }
+    } catch (error) {}
   }
 
-  static void updateNodeFromRowData({required VwNode nodeDestination, required  VwRowData rowDataSource})
-  {
-    if(rowDataSource.getFieldByName("displayName")!=null)
-      {
-        nodeDestination.displayName=rowDataSource.getFieldByName("displayName")!.valueString!.toString();
-      }
-
-    
+  static void updateNodeFromRowData(
+      {required VwNode nodeDestination, required VwRowData rowDataSource}) {
+    if (rowDataSource.getFieldByName("displayName") != null) {
+      nodeDestination.displayName =
+          rowDataSource.getFieldByName("displayName")!.valueString!.toString();
+    }
   }
 
   static List<VwNode> getNodeListFromFieldValue(VwFieldValue fieldValue) {
@@ -89,20 +80,19 @@ class NodeUtil {
     return returnValue;
   }
 
-  static VwFormDefinition? extractFormDefinitionFromNode(VwNode node){
+  static VwFormDefinition? extractFormDefinitionFromNode(VwNode node) {
     VwFormDefinition? returnValue;
 
-    try
-        {
-          RemoteApi.decompressClassEncodedJson(node.content.classEncodedJson!);
-          returnValue=VwFormDefinition.fromJson(node.content.classEncodedJson!.data!);
-        }
-        catch(error)
-    {
-        print("Error catched on static VwFormDefinition? extractFormDefinitionFromNode(VwNode node) :"+error.toString());
+    try {
+      RemoteApi.decompressClassEncodedJson(node.content.classEncodedJson!);
+      returnValue =
+          VwFormDefinition.fromJson(node.content.classEncodedJson!.data!);
+    } catch (error) {
+      print(
+          "Error catched on static VwFormDefinition? extractFormDefinitionFromNode(VwNode node) :" +
+              error.toString());
     }
     return returnValue;
-
   }
 
   static VwUser? getUserClassFromLinkNodeClassEncodedJson(
@@ -116,8 +106,6 @@ class NodeUtil {
     } catch (error) {}
     return returnValue;
   }
-
-  
 
   static VwFieldValue? getFieldValueFromLinkNodeRowData(
       {required String fieldName, required VwLinkNode linkNode}) {
@@ -529,23 +517,15 @@ class NodeUtil {
   }
 
   static void removeNodeFromNodeList(
-      String nodeId, List<VwNode> currentNodeList)
-  {
-    try
-        {
-          for (int la = 0; la < currentNodeList.length; la++)
-            {
-              if (currentNodeList.elementAt(la).recordId == nodeId) {
-                currentNodeList.removeAt(la);
-                break;
-              }
-            }
+      String nodeId, List<VwNode> currentNodeList) {
+    try {
+      for (int la = 0; la < currentNodeList.length; la++) {
+        if (currentNodeList.elementAt(la).recordId == nodeId) {
+          currentNodeList.removeAt(la);
+          break;
         }
-        catch(error)
-    {
-
-    }
-
+      }
+    } catch (error) {}
   }
 
   static void removeNodeFromLinkNodeList(
@@ -778,43 +758,56 @@ class NodeUtil {
         VwFieldValue? currentFieldValue =
             node.content!.rowData!.getFieldByName(fieldName);
 
-        if (currentFieldValue != null &&
-            currentFieldValue.valueLinkNode != null) {
-          VwNode? currentNode;
-          if (currentFieldValue!.valueLinkNode!.rendered != null) {
-            currentNode = currentFieldValue!.valueLinkNode!.rendered!.node;
-          }
+        if (currentFieldValue != null) {
 
-          if (currentNode == null &&
-              currentFieldValue!.valueLinkNode!.cache != null) {
-            currentNode = currentFieldValue!.valueLinkNode!.cache!.node;
-          }
+          if (currentFieldValue!.valueTypeId == VwFieldValue.vatValueLinkNode &&
 
-          if (currentNode != null) {
-            if (currentNode!.content.rowData != null) {
-              if (currentNode!.content.rowData!
+              currentFieldValue.valueLinkNode != null) {
+            VwNode? currentNode;
+            if (currentFieldValue!.valueLinkNode!.rendered != null) {
+              currentNode = currentFieldValue!.valueLinkNode!.rendered!.node;
+            }
+
+            if (currentNode == null &&
+                currentFieldValue!.valueLinkNode!.cache != null) {
+              currentNode = currentFieldValue!.valueLinkNode!.cache!.node;
+            }
+
+            if (currentNode != null) {
+              if (currentNode!.content.rowData != null) {
+                if (currentNode!.content.rowData!
+                        .getFieldByName(subFieldName)!
+                        .valueString !=
+                    null) {
+                  returnValue = currentNode!.content.rowData!
                       .getFieldByName(subFieldName)!
-                      .valueString !=
-                  null) {
-                returnValue = currentNode!.content.rowData!
-                    .getFieldByName(subFieldName)!
-                    .valueString!;
-              } else if (currentNode!.content.rowData!
+                      .valueString!;
+                } else if (currentNode!.content.rowData!
+                        .getFieldByName(subFieldName)!
+                        .valueNumber !=
+                    null) {
+                  returnValue = currentNode!.content.rowData!
                       .getFieldByName(subFieldName)!
-                      .valueNumber !=
-                  null) {
-                returnValue = currentNode!.content.rowData!
-                    .getFieldByName(subFieldName)!
-                    .valueNumber!
+                      .valueNumber!
+                      .toString();
+                }
+              } else if (currentNode!.content.classEncodedJson != null &&
+                  currentNode!.content.classEncodedJson!.data != null) {
+                returnValue = currentNode!
+                    .content.classEncodedJson!.data![subFieldName]
                     .toString();
               }
-            } else if (currentNode!.content.classEncodedJson != null &&
-                currentNode!.content.classEncodedJson!.data != null) {
-              returnValue = currentNode!
-                  .content.classEncodedJson!.data![subFieldName]
-                  .toString();
             }
           }
+          else if(currentFieldValue.valueTypeId==VwFieldValue.vatValueFormResponse && currentFieldValue.valueFormResponse!=null)
+            {
+             VwFieldValue?  currentSubFieldValue=currentFieldValue.valueFormResponse!.getFieldByName(subFieldName);
+
+             if(currentSubFieldValue!=null)
+               {
+                 returnValue=currentSubFieldValue.valueString;
+               }
+            }
         }
       } else if (node.nodeType == VwNode.ntnLinkRowCollection) {
         VwLinkNode? currentLinkNode =
@@ -870,8 +863,7 @@ class NodeUtil {
       {required VwNode node,
       required String fieldName,
       VwFieldDisplayFormat? fieldDisplayFormat,
-      required String locale
-      }) {
+      required String locale}) {
     String? returnValue;
     try {
       if (node.nodeType == VwNode.ntnRowData) {
@@ -892,17 +884,14 @@ class NodeUtil {
 
               if (fieldDisplayFormat != null) {
                 returnValue = DisplayFormatUtil.renderDisplayFormat(
-                  fieldDisplayFormat!,
-                  currentFieldValue,
-                    locale
-                );
+                    fieldDisplayFormat!, currentFieldValue, locale);
               }
             } else if (currentFieldValue.valueTypeId ==
                 VwFieldValue.vatNumber) {
               returnValue = currentFieldValue.valueNumber!.toString();
               if (fieldDisplayFormat != null) {
                 returnValue = DisplayFormatUtil.renderDisplayFormat(
-                    fieldDisplayFormat!, currentFieldValue,locale);
+                    fieldDisplayFormat!, currentFieldValue, locale);
               }
             }
           }
