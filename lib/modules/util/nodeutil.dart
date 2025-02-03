@@ -45,6 +45,21 @@ class NodeUtil {
           .getOrCreateFieldByName(fieldName: "creatorUserId")
           .valueString = nodeSource.creatorUserId;
 
+      rowDataDestination
+          .getOrCreateFieldByName(fieldName: "indexKey")
+          .value = nodeSource.indexKey;
+
+      rowDataDestination
+          .getOrCreateFieldByName(fieldName: "uniqueKey")
+          .valueString = nodeSource.uniqueKey;
+
+      rowDataDestination
+          .getOrCreateFieldByName(fieldName: "stateKey")
+          .valueString = nodeSource.stateKey;
+
+
+
+
       if (nodeSource.timestamp != null) {
         rowDataDestination
             .getOrCreateFieldByName(fieldName: "createdtimestamp")
