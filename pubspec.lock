@@ -301,18 +301,18 @@ packages:
     dependency: transitive
     description:
       name: dio
-      sha256: "5598aa796bbf4699afd5c67c0f5f6e2ed542afc956884b9cd58c306966efc260"
+      sha256: "253a18bbd4851fecba42f7343a1df3a9a4c1d31a2c1b37e221086b4fa8c8dbc9"
       url: "https://pub.dev"
     source: hosted
-    version: "5.7.0"
+    version: "5.8.0+1"
   dio_web_adapter:
     dependency: transitive
     description:
       name: dio_web_adapter
-      sha256: "33259a9276d6cea88774a0000cfae0d861003497755969c92faa223108620dc8"
+      sha256: e485c7a39ff2b384fa1d7e09b4e25f755804de8384358049124830b04fc4f93a
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.0"
+    version: "2.1.0"
   dropdown_button2:
     dependency: transitive
     description:
@@ -588,10 +588,10 @@ packages:
     dependency: transitive
     description:
       name: glob
-      sha256: "0e7014b3b7d4dac1ca4d6114f82bf1782ee86745b9b42a92c9289c23d8a0ab63"
+      sha256: c3f1ee72c96f8f78935e18aa8cecced9ab132419e8625dc187e1c2408efc20de
       url: "https://pub.dev"
     source: hosted
-    version: "2.1.2"
+    version: "2.1.3"
   go_router:
     dependency: transitive
     description:
@@ -748,10 +748,10 @@ packages:
     dependency: transitive
     description:
       name: just_audio_platform_interface
-      sha256: "0243828cce503c8366cc2090cefb2b3c871aa8ed2f520670d76fd47aa1ab2790"
+      sha256: "271b93b484c6f494ecd72a107fffbdb26b425f170c665b9777a0a24a726f2f24"
       url: "https://pub.dev"
     source: hosted
-    version: "4.3.0"
+    version: "4.4.0"
   just_audio_web:
     dependency: transitive
     description:
@@ -885,7 +885,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: e92cb9085a1cd31d182380d036b38a1f1b237e06
+      resolved-ref: e99525a972f9375c1c08d82fe30c297c582d1eb1
       url: "https://github.com/alvinow/matrixclient2base.git"
     source: git
     version: "1.0.0+1"
@@ -893,10 +893,10 @@ packages:
     dependency: "direct main"
     description:
       name: md5_file_checksum
-      sha256: "1a18b3ba2910783d5eeb4290b004ca58302590f3cc919c87112996265a1c0682"
+      sha256: "60130debb1489ae49449050ad5faa730bff86985dfac5a06c56f279de329994b"
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.5"
+    version: "1.0.6"
   meta:
     dependency: transitive
     description:
@@ -950,7 +950,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "1ad5f043fd759e6b5e2a9a80ae4efcac88b66ff5"
+      resolved-ref: "0cdca7f284defd7353ece2f6d8ec0c500a8faaec"
       url: "https://github.com/alvinow/nodelistview.git"
     source: git
     version: "1.0.0+1"
@@ -1692,7 +1692,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "1fdfed873349d43371a599739aee31c1ca78e510"
+      resolved-ref: "7aa575a48e01b2a50d6ad8f993d4ca55c2378753"
       url: "https://github.com/alvinow/vwform.git"
     source: git
     version: "1.0.0+1"

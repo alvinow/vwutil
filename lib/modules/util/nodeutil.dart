@@ -884,7 +884,34 @@ class NodeUtil {
       if (node.nodeType == VwNode.ntnRowData) {
         if (fieldName == "creatorUserId") {
           returnValue = node.content.rowData!.creatorUserId;
-        } else {
+        }
+        else if (fieldName == "creatorUsermame") {
+
+        VwUser? user=  NodeUtil.getUserClassFromLinkNodeClassEncodedJson(linkNode: node.content.rowData!.creatorUserLinkNode!);
+
+        if(user!=null)
+          {
+            returnValue=user!.username;
+          }
+
+        }
+        else if(fieldName == 'timestamp.created')
+       {
+         if(node.timestamp!=null)
+           {
+             returnValue =node.timestamp!.created.toString();
+           }
+
+       }
+        else if(fieldName == 'timestamp.updated')
+        {
+          if(node.timestamp!=null)
+          {
+            returnValue =node.timestamp!.updated.toString();
+          }
+
+        }
+        else {
           VwFieldValue? currentFieldValue =
               node.content.rowData!.getFieldByName(fieldName);
 
