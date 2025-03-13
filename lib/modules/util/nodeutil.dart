@@ -908,7 +908,7 @@ class NodeUtil {
         }
       } else if (node.nodeType == VwNode.ntnLinkBaseModelCollection) {
         returnValue = NodeUtil.extractBaseModel(node.content)!.data![fieldName];
-      } 
+      }
     } catch (error) {}
 
     return returnValue;
