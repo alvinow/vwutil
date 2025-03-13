@@ -29,10 +29,10 @@ packages:
     dependency: transitive
     description:
       name: args
-      sha256: bf9f5caeea8d8fe6721a9c358dd8a5c1947b27f1cfaa18b39c301273594919e6
+      sha256: d0481093c50b1da8910eb0bb301626d4d8eb7284aa739614d2b394ee09e3ea04
       url: "https://pub.dev"
     source: hosted
-    version: "2.6.0"
+    version: "2.7.0"
   asn1lib:
     dependency: transitive
     description:
@@ -885,7 +885,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "98c7f184383fbd8eacd197f02d28e2a94e1315e5"
+      resolved-ref: e2a1a57b3e22f2dabe4caa165ea28827699c3bcf
       url: "https://github.com/alvinow/matrixclient2base.git"
     source: git
     version: "1.0.0+1"
@@ -950,7 +950,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: c1ad2c273ab47db61aec76d597c682dd72ad8ed2
+      resolved-ref: "2c3a95b65b50e369028b94b51acb99f83c80d06a"
       url: "https://github.com/alvinow/nodelistview.git"
     source: git
     version: "1.0.0+1"
@@ -1692,7 +1692,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "92f35ead8a949af03f5d812fad8e409cf1168796"
+      resolved-ref: "7bb1f2a803a6d494cc53a4e3ae91cf5443e03c7f"
       url: "https://github.com/alvinow/vwform.git"
     source: git
     version: "1.0.0+1"
