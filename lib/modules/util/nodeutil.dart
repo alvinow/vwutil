@@ -507,10 +507,7 @@ class NodeUtil {
                 className: "VwRowData",
                 recordId: rowData.recordId,
                 recordRef: rowData.ref),
-            linkRowCollection: VwLinkRowCollection(
-                recordId: rowData.recordId,
-                collectionName: rowData.collectionName.toString(),
-                sync: rowData)));
+           ));
 
     return formResponseNode;
   }
@@ -652,13 +649,8 @@ class NodeUtil {
   static VwClassEncodedJson? extractBaseModel(VwNodeContent nodeContent) {
     VwClassEncodedJson? returnValue;
     try {
-      returnValue = nodeContent.linkbasemodel!.sync;
-      if (returnValue == null) {
-        returnValue = nodeContent.linkbasemodel!.rendered;
-      }
-      if (returnValue == null) {
-        returnValue = nodeContent.linkbasemodel!.cache;
-      }
+
+
     } catch (error) {}
 
     return returnValue;
@@ -667,14 +659,7 @@ class NodeUtil {
   static VwRowData? extractLinkRowCollection(VwNodeContent nodeContent) {
     VwRowData? returnValue;
     try {
-      returnValue = nodeContent.linkRowCollection!.sync;
 
-      if (returnValue == null) {
-        returnValue = nodeContent.linkRowCollection!.rendered;
-      }
-      if (returnValue == null) {
-        returnValue = nodeContent.linkRowCollection!.cache;
-      }
     } catch (error) {}
 
     return returnValue;
@@ -754,11 +739,6 @@ class NodeUtil {
     try {
       if (node.nodeType == VwNode.ntnRowData) {
         return node.content.rowData!;
-      } else if (node.nodeType == VwNode.ntnLinkRowCollection) {
-        return node.content.linkRowCollection?.rendered;
-      } else if (node.nodeType == VwNode.ntnLinkBaseModelCollection) {
-        return NodeUtil.convertVwBaseModelToRowData(
-            node.content.linkbasemodel!.rendered!.data!);
       }
     } catch (error) {}
     return null;
@@ -831,22 +811,11 @@ class NodeUtil {
                 .valueLinkNode;
 
         if (currentLinkNode != null) {
-          VwRowData? currentSubContentRowData =
-              currentLinkNode.cache!.node!.content.linkRowCollection!.rendered;
 
-          if (currentSubContentRowData == null) {
-            currentSubContentRowData =
-                currentLinkNode.cache!.node!.content.linkRowCollection!.cache;
-          }
 
-          if (currentSubContentRowData != null) {
-            String? currentSubContentRowDataStringValue =
-                currentSubContentRowData
-                    .getFieldByName(subFieldName)!
-                    .valueString;
 
-            returnValue = currentSubContentRowDataStringValue;
-          }
+
+
         }
       }
     } catch (error) {}
@@ -858,18 +827,7 @@ class NodeUtil {
           VwNode node, String fieldName, String subFieldName) {
     DateTime? returnValue;
     try {
-      if (node.nodeType == VwNode.ntnLinkRowCollection) {
-        returnValue = NodeUtil.extractLinkRowCollection(node.content)!
-            .getFieldByName(fieldName)!
-            .valueLinkNode!
-            .cache!
-            .node!
-            .content
-            .linkRowCollection!
-            .rendered!
-            .getFieldByName(subFieldName)!
-            .valueDateTime;
-      }
+
     } catch (error) {}
     return returnValue;
   }
@@ -950,54 +908,7 @@ class NodeUtil {
         }
       } else if (node.nodeType == VwNode.ntnLinkBaseModelCollection) {
         returnValue = NodeUtil.extractBaseModel(node.content)!.data![fieldName];
-      } else if (node.nodeType == VwNode.ntnLinkRowCollection &&
-          node.content.linkRowCollection != null) {
-        if (fieldName == "creatorUserId" || fieldName == "creatorUserName") {
-          VwRowData? rowData;
-
-          rowData = node.content.linkRowCollection!.rendered;
-
-          if (rowData == null) {
-            rowData = node.content.linkRowCollection!.cache;
-          }
-
-          if (rowData != null) {
-            if (fieldName == "creatorUserId") {
-              returnValue = rowData.creatorUserId;
-            } else if (rowData!.creatorUserLinkNode != null) {
-              VwNode? userNode;
-
-              if (rowData!.creatorUserLinkNode!.rendered != null) {
-                userNode = rowData!.creatorUserLinkNode!.rendered!.node;
-              } else {
-                userNode = rowData!.creatorUserLinkNode!.cache!.node;
-              }
-
-              if (userNode != null &&
-                  NodeUtil.extractBaseModel(userNode!.content) != null) {
-                try {
-                  VwUser user = VwUser.fromJson(
-                      NodeUtil.extractBaseModel(userNode!.content)!.data!);
-
-                  if (fieldName == "creatorUserName") {
-                    returnValue = user.username;
-                  } else if (fieldName == "creatorMainRoleUserGroupId") {
-                    returnValue = user.mainRoleUserGroupId;
-                  } else if (fieldName == "creatorOrganizationMemberId") {
-                    returnValue = user.organizationMemberId;
-                  } else if (fieldName == "creatorCitizenId") {
-                    returnValue = user.citizenId;
-                  }
-                } catch (error) {}
-              }
-            }
-          }
-        } else {
-          returnValue = NodeUtil.extractLinkRowCollection(node.content)!
-              .getFieldByName(fieldName)!
-              .valueString;
-        }
-      }
+      } 
     } catch (error) {}
 
     return returnValue;
