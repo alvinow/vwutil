@@ -1,14 +1,14 @@
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/foundation.dart';
-import 'package:platform_device_id/platform_device_id.dart';
+
 
 class DeviceInfoutil {
 
   static Future<String> getDeviceId() async{
     String returnValue="<invalid_device_id>";
     try {
-      returnValue = (await PlatformDeviceId .getDeviceId)!;
+     // returnValue = (await PlatformDeviceId .getDeviceId)!;
     } catch(error) {
      print("error catched on Future<String> getDeviceId()="+error.toString());
     }

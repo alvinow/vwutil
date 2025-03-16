@@ -37,7 +37,7 @@ dependencies:
   cupertino_icons: ^1.0.6
   md5_file_checksum:
   device_info_plus:
-  platform_device_id:
+  #platform_device_id:
   get_ip_address:
   image:
   crypto:

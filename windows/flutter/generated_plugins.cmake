@@ -6,7 +6,6 @@ list(APPEND FLUTTER_PLUGIN_LIST
   file_saver
   geolocator_windows
   permission_handler_windows
-  platform_device_id_windows
   syncfusion_pdfviewer_windows
   url_launcher_windows
 )
